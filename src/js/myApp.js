@@ -4,8 +4,11 @@ define(['marionette', 'backbone'], function(Marionette, Backbone){
       mainRegion: 'body'
     },
     initialize: function(){
-      console.log('app created!');
-      Backbone.history.start();      
+      //console.log('app created!' + options.optionA + options.optionB );
+      Backbone.history.start();
+    },
+    onStart: function(options){
+      console.log('app created!' + options.optionA + options.optionB );
     }
   });
 });
