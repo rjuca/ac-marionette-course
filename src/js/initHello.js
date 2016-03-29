@@ -10,7 +10,6 @@ define(['myApp', 'layouts/myAppMainLayout'], function(MyApp, MyLayout){
     optionE: 'world'
   });
 
-  app.rootView = layout;
+  app.mainRegion.show(layout);
 
-  layout.render();
 });
