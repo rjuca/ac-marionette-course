@@ -1,0 +1,21 @@
+{
+  "name": "ac-marionette-course",
+  "description": "",
+  "main": "index.js",
+  "license": "ISC",
+  "homepage": "https://github.com/tferreira0/ac-marionette-course",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "backbone.marionette": "marionette#^2.4.5"
+  },
+  "dependencies": {
+    "jquery": "^2.2.2"
+  }
+}
