@@ -20,6 +20,19 @@ define(['marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayou
         'login' : 'doLogin',
         '*path': 'doHello'
       },
-      controller: new SocialController()
+      controller: new SocialController(),
+      execute: function(callback, args, path){
+        if( path !== 'doLogin' && !sessionStorage.sessionId ){
+          Backbone.history.navigate('login', {trigger: true});
+          return false;
+        }else if(path==='doLogin' && sessionStorage.sessionId){
+          Backbone.history.navigate('', {trigger: true});
+          return false;
+        }else {
+          if(callback){
+            callback.apply(this, args);
+          }
+        }
+      }
     });
 });
