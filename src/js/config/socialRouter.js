@@ -1,4 +1,4 @@
-define(['marionette', 'backbone', 'layouts/myAppMainLayout'], function(Marionette, Backbone, MyAppMainLayout) {
+define(['marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayout'], function(Marionette, Backbone, MyAppMainLayout, LoginLayout) {
     var SocialController = Marionette.Object.extend({
       initialize: function(){
         this.options.regionManager = new Marionette.RegionManager({
@@ -8,7 +8,7 @@ define(['marionette', 'backbone', 'layouts/myAppMainLayout'], function(Marionett
         });
       },
       doLogin: function(){
-
+        this.getOption('regionManager').get('main').show(new LoginLayout());
       },
       doHello: function(){
         this.getOption('regionManager').get('main').show(new MyAppMainLayout());

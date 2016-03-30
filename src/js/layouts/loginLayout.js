@@ -1,9 +1,12 @@
-define(['marionette', 'backbone'], function(Marionette, Backbone){
+define(['marionette', 'backbone', 'views/loginFormView', 'text!templates/loginContainerTemplate.html'], function(Marionette, Backbone, LoginFormView, LoginContainerTemplate){
   return Marionette.LayoutView.extend({
-    template: '<div>Login Screen</div>',
+    template: LoginContainerTemplate,
     regions: {
       form: '#form',
       footer: '#footer'
+    },
+    onBeforeShow: function(){
+      this.showChildView('form', new LoginFormView());
     }
   });
 });
