@@ -8,7 +8,12 @@ define(['marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayou
         });
       },
       doLogin: function(){
-        this.getOption('regionManager').get('main').show(new LoginLayout());
+        var layout = new LoginLayout();
+        this.listenTo(layout, 'login:success', this.handleLoginSuccess);
+        this.getOption('regionManager').get('main').show(layout);
+      },
+      handleLoginSuccess: function(model, response){
+        alert(response);
       },
       doHello: function(){
         this.getOption('regionManager').get('main').show(new MyAppMainLayout());
