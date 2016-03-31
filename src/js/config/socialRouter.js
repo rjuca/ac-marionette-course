@@ -13,7 +13,9 @@ define(['marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayou
         this.getOption('regionManager').get('main').show(layout);
       },
       handleLoginSuccess: function(model, response){
-        alert(response);
+        this.sessionId = response;
+        sessionStorage.sessionId = response;
+        Backbone.history.navigate('', {trigger: true});
       },
       doHello: function(){
         this.getOption('regionManager').get('main').show(new MyAppMainLayout());
