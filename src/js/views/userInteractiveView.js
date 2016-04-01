@@ -18,8 +18,25 @@ function(Backbone, Marionette, UserView, FriendshipModel, UserInteractiveTemplat
       this.friendship = new FriendshipModel({
         id: this.model.get('idAttribute')
       });
-      //this.listenTo(this.friendship, 'sync', this.adjustFriendshipStatus);
+      this.listenTo(this.friendship, 'sync', this.adjustFriendshipStatus);
       this.friendship.getFriendship();
+    },
+    adjustFriendshipStatus: function(){
+      var self = this,
+          friendshipStatusCode = this.friendship.get('status');
+
+      _.each(this.ui, function(index, element, ui){
+        ui[element].addClass('hide');
+      });
+      if(friendshipStatusCode === 0 && this.friendship.get('userRequested') !== this.model.get('idAttribute')){
+        this.ui.acceptRequestButton.removeClass('hide');
+      }else if(friendshipStatusCode === 0){
+        this.ui.waitingApprovalButton.removeClass('hide');
+      }else if(friendshipStatusCode === 1){
+        this.ui.friendDisclaimer.removeClass('hide');
+      }else if(!friendshipStatusCode){
+        this.ui.addFriendButton.removeClass('hide');
+      }
     },
     addFriendHandler: function(){
       this.friendship.addFriend();
