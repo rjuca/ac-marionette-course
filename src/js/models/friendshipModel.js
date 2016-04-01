@@ -16,6 +16,13 @@ define(['backbone'], function(Backbone){
         },
         type: 'PUT'
       });
+    },
+    getFriendship: function(){
+      this.fetch({
+        headers:{
+            'Authorization': 'bearer ' + sessionStorage.sessionId
+        }
+      });
     }
   });
 });

@@ -13,6 +13,19 @@ function(Backbone, Marionette, UserView, FriendshipModel, UserInteractiveTemplat
       waitingApprovalButton: 'button#waitingApproval',
       acceptRequestButton: 'button#acceptRequest',
       friendDisclaimer: 'span#friendDisclaimer'
+    },
+    initialize: function(){
+      this.friendship = new FriendshipModel({
+        id: this.model.get('idAttribute')
+      });
+      //this.listenTo(this.friendship, 'sync', this.adjustFriendshipStatus);
+      this.friendship.getFriendship();
+    },
+    addFriendHandler: function(){
+      this.friendship.addFriend();
+    },
+    acceptRequestHandler: function(){
+      this.friendship.acceptRequest();
     }
   });
 });

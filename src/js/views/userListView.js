@@ -1,5 +1,6 @@
-define(['backbone', 'marionette', 'views/userView'], function(Backbone, Marionette, UserView){
+define(['backbone', 'marionette', 'views/userInteractiveView'],
+function(Backbone, Marionette, UserInteractiveView){
   return Marionette.CollectionView.extend({
-    childView: UserView
+    childView: UserInteractiveView
   });
 });
