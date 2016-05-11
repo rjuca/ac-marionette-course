@@ -18,6 +18,9 @@
   "dependencies": {
     "jquery": "^2.2.2",
     "requirejs": "^2.2.0",
-    "text": "requirejs-text#^2.0.14"
+    "text": "requirejs-text#^2.0.14",
+    "handlebars": "^4.0.5",
+    "hbs": "^1.0.0",
+    "material-design-lite": "^1.1.3"
   }
 }

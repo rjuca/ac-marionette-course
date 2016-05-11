@@ -1,4 +1,4 @@
-define(['backbone', 'marionette', 'models/loginModel', 'text!templates/loginFormTemplate'], function(Backbone, Marionette, LoginModel, LoginFormTemplate){
+define(['backbone', 'marionette', 'models/loginModel', 'hbs!templates/loginFormTemplate'], function(Backbone, Marionette, LoginModel, LoginFormTemplate){
   return Marionette.ItemView.extend({
     template: LoginFormTemplate,
     model: new LoginModel(),
@@ -6,7 +6,8 @@ define(['backbone', 'marionette', 'models/loginModel', 'text!templates/loginForm
       'click @ui.submit': 'doLogin'
     },
     modelEvents: {
-      'login:failure': 'handleLoginFailure'
+      'login:failure': 'handleLoginFailure',
+      'login:success': 'handleLoginSuccess'
     },
     ui: {
       usernameField: 'input[name="username"]',
@@ -14,7 +15,7 @@ define(['backbone', 'marionette', 'models/loginModel', 'text!templates/loginForm
       submit: 'button'
     },
     initialize: function(){
-      this.listenTo(this.model, 'login:success', this.handleLoginSuccess);
+      console.info("Initialize LoginFormView()");
     },
     handleLoginSuccess: function(model, response){
       this.trigger('login:success', model, response);

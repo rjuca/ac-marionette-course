@@ -1,9 +1,8 @@
-define(['marionette', 'backbone', 'views/loginFormView', 'text!templates/loginContainerTemplate.html'], function(Marionette, Backbone, LoginFormView, LoginContainerTemplate){
+define(['marionette', 'backbone', 'views/loginFormView', 'hbs!templates/loginContainerTemplate'], function(Marionette, Backbone, LoginFormView, LoginContainerTemplate){
   return Marionette.LayoutView.extend({
     template: LoginContainerTemplate,
     regions: {
-      form: '#form',
-      footer: '#footer'
+      form: '#form'
     },
     initialize: function(){
       this.loginFormView = new LoginFormView();

@@ -1,0 +1,14 @@
+<div id="main" class="row">
+    <div class="col s12">
+        <ul class="tabs">
+            <li id="friendsTab" class="tab col s3 disabled"><a href="#friends" onclick="Materialize.showStaggeredList('#friends')">My Friends</a></li>
+            <li id="requestsTab" class="tab col s3 disabled"><a href="#requests" onclick="Materialize.showStaggeredList('#requests')">My Requests</a></li>
+            <li id="approvalsTab" class="tab col s3 disabled"><a href="#approvals" onclick="Materialize.showStaggeredList('#approvals')">My Approvals</a></li>
+        </ul>
+    </div>
+    <div class="col s12">
+        <div id="friends" class="col s12 collection"></div>
+        <div id="requests" class="col s12 collection"></div>
+        <div id="approvals" class="col s12 collection"></div>
+    </div>
+</div>

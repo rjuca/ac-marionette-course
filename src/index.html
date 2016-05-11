@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" type="text/css" href="css/home.css">
-</head>
-<title>Page Title</title>
-<script src="../bower_components/requirejs/require.js"></script>
-<script src="js/config/requireConfig.js"></script>
-<body>
-  <script>
-    require(['initHello']);
-  </script>
-</body>
-
+<html class="mdl-js">
+    <title>AC Social</title>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/Materialize/dist/js/materialize.min.js"></script>
+        <script src="../bower_components/requirejs/require.js"></script>
+        <script src="js/config/requireConfig.js"></script>
+        <!--Import materialize.css-->
+        <link rel="stylesheet" href="../bower_components/Materialize/dist/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/home.css">
+    </head>
+    <header></header>
+    <body>
+        <div id="mainContent">
+            <script>
+                require(['initHello']);
+            </script>
+        </div>
+    </body>
+    <footer></footer>
 </html>

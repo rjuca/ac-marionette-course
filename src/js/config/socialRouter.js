@@ -1,11 +1,17 @@
-define(['marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayout', 'layouts/homeLayout'], function(Marionette, Backbone, MyAppMainLayout, LoginLayout, HomeLayout) {
+define( [ 'marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayout', 'layouts/homeLayout', 'layouts/requestsLayout', 'layouts/headerLayout', 'layouts/footerLayout' ],
+  function( Marionette, Backbone, MyAppMainLayout, LoginLayout, HomeLayout, RequestsLayout, HeaderLayout, FooterLayout ) {
     var SocialController = Marionette.Object.extend({
       initialize: function(){
         this.options.regionManager = new Marionette.RegionManager({
             regions: {
-                main: 'body'
+                main: '#mainContent',
+                header: 'header',
+                footer: 'footer'
             }
         });
+
+        this.getOption('regionManager').get('header').show(new HeaderLayout());
+        this.getOption('regionManager').get('footer').show(new FooterLayout());
       },
       doLogin: function(){
         var layout = new LoginLayout();
@@ -15,13 +21,16 @@ define(['marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayou
       handleLoginSuccess: function(model, response){
         this.sessionId = response;
         sessionStorage.sessionId = response;
-        Backbone.history.navigate('', {trigger: true});
+        Backbone.history.navigate('home', {trigger: true});
       },
       doHello: function(){
         this.getOption('regionManager').get('main').show(new MyAppMainLayout());
       },
       doHome: function(){
         this.getOption('regionManager').get('main').show(new HomeLayout());
+      },
+      doRequests: function() {
+        this.getOption( 'regionManager' ).get( 'main' ).show( new RequestsLayout() );
       }
     });
 
@@ -29,15 +38,18 @@ define(['marionette', 'backbone', 'layouts/myAppMainLayout', 'layouts/loginLayou
       appRoutes: {
         'login' : 'doLogin',
         'home': 'doHome',
+        'requests': 'doRequests',
         '*path': 'doHello'
       },
+
       controller: new SocialController(),
-      execute: function(callback, args, path){
+
+      execute: function( callback, args, path ) {
         if( path !== 'doLogin' && !sessionStorage.sessionId ){
-          Backbone.history.navigate('login', {trigger: true});
+          Backbone.history.navigate( 'login', {trigger: true} );
           return false;
-        }else if(path==='doLogin' && sessionStorage.sessionId){
-          Backbone.history.navigate('', {trigger: true});
+        } else if(path === 'doLogin' && sessionStorage.sessionId){
+          Backbone.history.navigate( 'home', {trigger: true} );
           return false;
         }else {
           if(callback){

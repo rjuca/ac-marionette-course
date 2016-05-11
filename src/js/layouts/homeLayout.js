@@ -1,13 +1,21 @@
-define(['marionette', 'backbone', 'text!templates/homeTemplate', 'models/userModel', 'views/userView', 'collections/userCollection', 'views/userListView'], function(Marionette, Backbone, HomeTemplate, UserModel, UserView, UserCollection, UserListView) {
+define(['marionette', 'backbone', 'hbs!templates/homeTemplate', 'models/userModel', 'views/userView', 'collections/userCollection', 'views/userListView'], function(Marionette, Backbone, HomeTemplate, UserModel, UserView, UserCollection, UserListView) {
     return Marionette.LayoutView.extend({
         template: HomeTemplate,
         regions: {
             profile: '#profile',
             userList: '#userList'
         },
+
+        ui: {
+            requestsBtn: 'button#requestsHandler'
+        },
+
+        events: {
+            'click @ui.requestsBtn': 'goToRequests'
+        },
+
         initialize: function() {
             this.initProfile();
-            this.initUserList();
         },
         initProfile: function() {
             this.userModel = new UserModel({
@@ -20,20 +28,14 @@ define(['marionette', 'backbone', 'text!templates/homeTemplate', 'models/userMod
                 }
             });
         },
-        initUserList: function() {
-            this.userList = new UserCollection();
-            this.listenTo(this.userList, 'sync', this.showUserListView);
-            this.userList.getAllUsers();
-        },
-        showUserListView: function() {
-            this.showChildView('userList', new UserListView({
-                collection: this.userList
-            }));
-        },
         showProfileView: function() {
             this.showChildView('profile', new UserView({
                 model: this.userModel
             }));
+        },
+
+        goToRequests: function() {
+            Backbone.history.navigate('requests', {trigger: true});
         }
     });
 });

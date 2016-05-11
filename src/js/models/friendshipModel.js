@@ -1,6 +1,6 @@
 define(['backbone'], function(Backbone){
   return Backbone.Model.extend({
-    urlRoot: 'http://localhost:8081/friendships/',
+    urlRoot: 'http://localhost:3000/friendships/',
     addFriend: function(){
       this.save({},{
         headers: {
